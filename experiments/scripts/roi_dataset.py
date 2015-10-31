@@ -9,6 +9,7 @@ import os
 
 import numpy as np
 from skimage import io
+from skimage.transform import resize
 from sklearn.datasets import load_files
 from sklearn.cross_validation import train_test_split
 
@@ -55,11 +56,15 @@ pkl_fname = os.path.join(LOGS_DIR, 'roi_y_{0}.pkl'.format(which_set))
 with open(pkl_fname, 'wb') as f:
     pickle.dump(y, f)
 
+
 IMG_SHAPE = (89, 133)
+print('Reshaping image to {0}'.format(IMG_SHAPE))
+
 
 X = []
 for fname in filenames_for_X:
     img = io.imread(fname, as_grey=True)
+    img = resize(img, IMG_SHAPE)
     X.append(img.reshape(-1) / 255.)
 X = np.array(X)
 
