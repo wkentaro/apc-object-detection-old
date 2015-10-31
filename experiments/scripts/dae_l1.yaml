@@ -1,7 +1,6 @@
 !obj:pylearn2.train.Train {
-    dataset: &dataset !obj:dapc15.datasets.ROI {
+    dataset: &train !obj:dapc15.datasets.ROI {
       which_set: 'train',
-      shuffle: True,
     },
     model: !obj:pylearn2.models.autoencoder.DenoisingAutoencoder {
         "nvis" : 11837,
@@ -16,10 +15,10 @@
     algorithm: !obj:pylearn2.training_algorithms.sgd.SGD {
         learning_rate : 1e-3,
         batch_size : 5,
-        monitoring_dataset : *dataset,
+        monitoring_dataset : *train,
         cost : !obj:pylearn2.costs.autoencoder.MeanSquaredReconstructionError {},
         termination_criterion : !obj:pylearn2.termination_criteria.EpochCounter {
-            max_epochs: 1,
+            max_epochs: 100,
         },
     },
     save_path: '../logs/dae_l1.pkl',
