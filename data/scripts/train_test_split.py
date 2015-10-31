@@ -48,3 +48,8 @@ for i in xrange(N):
         fname,
         os.path.join(target_dir, os.path.basename(fname)),
     )
+    mask_fname = os.path.splitext(fname)[0] + '_mask.jpg'
+    shutil.copy(
+        mask_fname,
+        os.path.join(target_dir, os.path.basename(mask_fname)),
+    )
