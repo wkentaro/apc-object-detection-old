@@ -13,7 +13,7 @@ from skimage.transform import resize
 from sklearn.datasets import load_files
 from sklearn.cross_validation import train_test_split
 
-from _init_path import *
+from _init_path import DATA_DIR, LOGS_DIR
 
 
 parser = argparse.ArgumentParser()
@@ -70,7 +70,7 @@ print('Reshaping image to {0}'.format(IMG_SHAPE))
 
 X = []
 for fname in filenames_for_X:
-    img = io.imread(fname, as_grey=True)
+    img = io.imread(fname)
     img = resize(img, IMG_SHAPE)
     X.append(img.reshape(-1) / 255.)
 X = np.array(X)
