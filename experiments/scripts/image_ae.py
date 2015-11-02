@@ -128,3 +128,9 @@ for epoch in six.moves.range(1, n_epoch + 1):
         sum_loss += float(loss.data) * len(y_batch)
 
     print('test  mean loss={}'.format(sum_loss / N_test))
+
+
+print('dumping model')
+with open('../logs/image_ae_model.pkl', 'wb') as f:
+    pickle.dump(model.to_cpu(), f)
+print('done')
