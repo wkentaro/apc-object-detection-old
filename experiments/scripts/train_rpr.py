@@ -17,7 +17,7 @@ print('using gpu: 0')
 # xp = np
 xp = cuda.cupy
 
-model_name = 'VGG'
+model_name = 'rpr'
 stamp = time.strftime('%Y-%m-%d-%H-%M-%S')
 logging.basicConfig(
     format='%(asctime)s [%(levelname)s] %(message)s',
@@ -56,8 +56,8 @@ n_epoch = 20
 
 
 # model
-from vgg import VGG
-model = VGG()
+from rpr import RoiParamRegression
+model = RoiParamRegression()
 cuda.get_device(0).use()
 model.to_gpu()
 

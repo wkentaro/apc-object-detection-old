@@ -5,11 +5,7 @@ from chainer import Variable, FunctionSet
 import chainer.functions as F
 
 
-class VGG(FunctionSet):
-
-    """
-    VGGnet
-    """
+class RoiParamRegression(FunctionSet):
 
     def __init__(self):
         super(VGG, self).__init__(
