@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import pickle
 import six
 
 import chainer
@@ -27,6 +28,7 @@ parser.add_argument('--gpu', '-g', default=-1, type=int,
 args = parser.parse_args()
 if args.gpu >= 0:
     cuda.check_cuda_available()
+    print('using gpu')
 xp = cuda.cupy if args.gpu >= 0 else np
 
 # Fixed params
@@ -40,6 +42,9 @@ x_train, y_train = fetch_roidata(which_set='train')
 x_test, y_test = fetch_roidata(which_set='test')
 N, N_test = len(x_train), len(x_test)
 
+print('N:', N)
+print('N_test:', N_test)
+
 # Prepare multi-layer perceptron model
 model = chainer.FunctionSet(
     l1=F.Linear(35511, 10000),
@@ -52,6 +57,7 @@ model = chainer.FunctionSet(
     l8=F.Linear(10000, 35511),
 )
 if args.gpu >= 0:
+    print('converting model to gpu')
     cuda.get_device(args.gpu).use()
     model.to_gpu()
 
