@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import division
-
 import argparse
 import cPickle as pickle
 import os
+import sys
 
 import numpy as np
 from skimage import io
@@ -16,7 +16,14 @@ from sklearn.cross_validation import train_test_split
 from _init_path import *
 
 
-which_set = 'train'
+parser = argparse.ArgumentParser()
+parser.add_argument('which_set')
+args = parser.parse_args()
+
+which_set = args.which_set
+
+if which_set not in ['train', 'test']:
+    sys.exit(1)
 
 
 data_dir = os.path.join(DATA_DIR, 'dapc15{0}'.format(which_set))
