@@ -64,7 +64,7 @@ with open(pkl_fname, 'wb') as f:
     pickle.dump(y, f)
 
 
-IMG_SHAPE = (89, 133)
+IMG_SHAPE = (44, 66)
 print('Reshaping image to {0}'.format(IMG_SHAPE))
 
 
