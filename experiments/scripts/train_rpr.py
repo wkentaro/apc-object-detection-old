@@ -94,9 +94,9 @@ for epoch in six.moves.range(1, n_epoch + 1):
 
         sum_loss += float(loss.data) * len(y_batch)
 
-    msg = 'epoch:{:02d}\ttrain mean loss={}'.format(epoch, sum_loss / N)
+    msg = 'epoch:{:02d}\ttrain mean loss={},'.format(epoch, sum_loss / N)
     logging.info(msg)
-    print('\n{}'.format(msg))
+    print(msg)
 
     # evaluation
     sum_loss = 0
@@ -108,9 +108,9 @@ for epoch in six.moves.range(1, n_epoch + 1):
 
         sum_loss += float(loss.data) * len(y_batch)
 
-    msg = 'epoch:{:02d}\ttrain mean loss={}'.format(epoch, sum_loss / N)
+    msg = 'epoch:{:02d}\ttest mean loss={},'.format(epoch, sum_loss / N)
     logging.info(msg)
-    print('\n{}'.format(msg))
+    print(msg)
 
 
 print('dumping model')
